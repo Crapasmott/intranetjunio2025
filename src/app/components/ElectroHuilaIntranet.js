@@ -2,6 +2,8 @@
 
 import React, { useState, useEffect } from 'react';
 import Header from './Header'; // Importar el componente Header
+import NosotrosSection from './NosotrosSection'; // NUEVO: Importar NosotrosSection
+import MaestrosSection from './MaestrosSection'; // ← AGREGAR ESTA LÍNEA
 import { 
   Bell, 
   Search, 
@@ -48,6 +50,9 @@ import {
 } from 'lucide-react';
 
 const ElectroHuilaIntranet = () => {
+  // NUEVO: Estado para navegación
+  const [currentView, setCurrentView] = useState('home');
+  
   const [currentDate, setCurrentDate] = useState('');
   const [currentNotification, setCurrentNotification] = useState(0);
   const [showNotifications, setShowNotifications] = useState(true);
@@ -71,6 +76,14 @@ const ElectroHuilaIntranet = () => {
     setCurrentDate(today.toLocaleDateString('es-ES', options));
   }, []);
 
+  // NUEVO: Funciones de navegación
+  const handleNavigation = (view) => {
+    setCurrentView(view);
+  };
+
+  const handleBackToHome = () => {
+    setCurrentView('home');
+  };
   // Notificaciones
   const notifications = [
     {
@@ -109,7 +122,7 @@ const ElectroHuilaIntranet = () => {
       icon: Users,
       color: 'bg-blue-600',
       textColor: 'text-white',
-      image: '/images/n-2.jpg',
+      image: '/images/n-3.jpg',
       hasImage: true
     }
   ];
@@ -124,9 +137,9 @@ const ElectroHuilaIntranet = () => {
     }
   }, [showNotifications, notifications.length]);
 
-  // Aplicaciones con íconos PNG - LAS 18 COMPLETAS
+  // Aplicaciones con íconos PNG
   const allApplications = [
-       {
+    {
       name: 'Mesa de Servicio',
       desc: 'Sistema de Atención al Cliente',
       iconPng: '/images/icons/mesa-servicio.png',
@@ -196,7 +209,7 @@ const ElectroHuilaIntranet = () => {
       url: 'https://backapp.electrohuila.com.co:8071/maps/comercial/mapa.php',
       category: 'Comercial Maps',
       color: 'from-yellow-500 to-amber-500',
-      featured: false
+      featured: true
     },
     {
       name: 'Calidad del Servicio',
@@ -205,7 +218,7 @@ const ElectroHuilaIntranet = () => {
       url: 'https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Operacion/CALIDAD%20DEL%20SERVICIO/Forms/AllItems.aspx',
       category: 'Servicio',
       color: 'from-indigo-500 to-blue-500',
-      featured: false
+      featured: true
     },
     {
       name: 'Control de Pérdidas',
@@ -214,7 +227,7 @@ const ElectroHuilaIntranet = () => {
       url: 'http://192.9.200.43/login',
       category: 'Control',
       color: 'from-purple-600 to-blue-600',
-      featured: false
+      featured: true
     },
     {
       name: 'Electrohuila Mapas',
@@ -235,60 +248,6 @@ const ElectroHuilaIntranet = () => {
       featured: false
     },
     {
-      name: 'Gestión Integral en RH y Nómina',
-      desc: 'Gestión Integral en RH y Nómina',
-      iconPng: '/images/icons/gestion-juridica.png',
-      url: 'http://192.9.200.125:7778/forms/frmservlet?form=iniciored.fmx',
-      category: 'Gestión',
-      color: 'from-gray-500 to-slate-600',
-      featured: false
-    },
-    {
-      name: 'Gestión Jurídica',
-      desc: 'Gestión Jurídica',
-      iconPng: '/images/icons/inventario-tic.png',
-      url: 'https://inventario.electrohuila.com',
-      category: 'Gestión Jurídica',
-      color: 'from-orange-500 to-red-500',
-      featured: false
-    },
-    {
-      name: 'Mapa-mental',
-      desc: 'Menú Control - Mapas mentales',
-      iconPng: '/images/icons/mapa-mental.png',
-      url: 'https://mapamental.electrohuila.com',
-      category: 'Control',
-      color: 'from-cyan-500 to-blue-500',
-      featured: false
-    },
-    {
-      name: 'Nómina',
-      desc: 'Módulo Autogestión Nómina',
-      iconPng: '/images/icons/nomina.png',
-      url: 'https://nomina.electrohuila.com',
-      category: 'Recursos Humanos',
-      color: 'from-green-500 to-emerald-600',
-      featured: false
-    },
-    {
-      name: 'Electrohuila Mapas',
-      desc: 'Sistema de geolocalización corporativo',
-      iconPng: '/images/icons/electrohuila-mapas.png',
-      url: 'https://mapas.electrohuila.com',
-      category: 'Mapas',
-      color: 'from-teal-500 to-cyan-500',
-      featured: false
-    },
-    {
-      name: 'Facturación Masiva',
-      desc: 'Sistema automatizado de facturación',
-      iconPng: '/images/icons/facturacion-masiva.png',
-      url: 'https://facturacion.electrohuila.com',
-      category: 'Facturación',
-      color: 'from-emerald-500 to-teal-600',
-      featured: false
-    },
-     {
       name: 'Mesa de Servicio',
       desc: 'Sistema de Atención al Cliente',
       iconPng: '/images/icons/mesa-servicio.png',
@@ -395,10 +354,64 @@ const ElectroHuilaIntranet = () => {
       category: 'Facturación Masiva',
       color: 'from-purple-500 to-blue-500',
       featured: false
-    }
+    },
+    {
+      name: 'Mesa de Servicio',
+      desc: 'Sistema de Atención al Cliente',
+      iconPng: '/images/icons/mesa-servicio.png',
+      url: 'https://enlinea.electrohuila.com.co/mesa-servicio/#/',
+      category: 'Servicio',
+      color: 'from-green-500 to-green-600',
+      featured: false
+    },
+    {
+      name: 'SIMAD',
+      desc: 'Sistema Integrado de Administración Documental',
+      iconPng: '/images/iconos/SIMAD.ico',
+      url: 'https://simad.electrohuila.com.co/#',
+      category: 'Documental',
+      color: 'from-blue-500 to-blue-600',
+      featured: false
+    },
+    {
+      name: 'ERP CyberAccount',
+      desc: 'ERP Electrohuila',
+      iconPng: '/images/icons/sig.png',
+      url: 'http://192.9.200.196/erp/registro2.asp',
+      category: 'ERP ',
+      color: 'from-red-500 to-orange-500',
+      featured: false
+    },
+    {
+      name: 'Web SAMI',
+      desc: 'Web SAMI',
+      iconPng: '/images/icons/comercial-maps.png',
+      url: 'http://sami.electrohuila.co:3001/login/',
+      category: 'Web',
+      color: 'from-green-500 to-teal-500',
+      featured: false
+    },
+    {
+      name: 'Sistema Integrado de Gestión',
+      desc: 'Sistema Integrado de Gestión',
+      iconPng: '/images/icons/consulta-oms.png',
+      url: 'http://intranet.electrohuila.com.co/intranet/sig/',
+      category: 'Sistema',
+      color: 'from-purple-500 to-pink-500',
+      featured: false
+    },
+    {
+      name: 'Nómina EH',
+      desc: 'Nómina EH',
+      iconPng: '/images/icons/control-perdidas.png',
+      url: 'http://10.50.35.27:8080/KioscoDesignerRHN-war/?grupo=GrupoEmpresarial1',
+      category: 'Nómina',
+      color: 'from-yellow-500 to-orange-500',
+      featured: false
+    },
+  
   ];
-
-  // Enlaces rápidos - ACTUALIZADOS según la imagen
+  // Enlaces rápidos
   const quickLinks = [
     {
       name: 'Calendario Tributario 2024',
@@ -406,42 +419,8 @@ const ElectroHuilaIntranet = () => {
       url: 'https://calendario2024.electrohuila.com',
       bgColor: 'bg-blue-500'
     },
-    {
-      name: 'Calendario Tributario 2025',
-      icon: Calendar,
-      url: 'https://calendario2025.electrohuila.com',
-      bgColor: 'bg-blue-500'
-    },
-    {
-      name: 'Reporte diario de salud',
-      icon: Heart,
-      url: 'https://salud.electrohuila.com',
-      bgColor: 'bg-blue-500'
-    },
-    {
-      name: 'Correo Office 365',
-      icon: Mail,
-      url: 'https://outlook.office365.com',
-      bgColor: 'bg-blue-500'
-    },
-    {
-      name: 'Sitio web principal',
-      icon: Globe,
-      url: 'https://www.electrohuila.com',
-      bgColor: 'bg-blue-500'
-    },
-    {
-      name: 'Protocolos de bioseguridad',
-      icon: Shield,
-      url: 'https://bioseguridad.electrohuila.com',
-      bgColor: 'bg-blue-500'
-    },
-    {
-      name: 'SIGAC',
-      icon: BarChart3,
-      url: 'https://sigac.electrohuila.com',
-      bgColor: 'bg-blue-500'
-    }
+    
+   
   ];
 
   // Novedades
@@ -503,7 +482,6 @@ const ElectroHuilaIntranet = () => {
       bgColor: 'bg-gradient-to-br from-blue-500 to-indigo-500'
     }
   ];
-
   // Galería de eventos
   const eventGallery = [
     {
@@ -581,7 +559,7 @@ const ElectroHuilaIntranet = () => {
       comments: 12,
       shares: 45,
       time: '2 horas',
-      image: '/images/social-1.jpg',
+      image: '/images/faceeins.jpg',
       url: 'https://facebook.com/electrohuila/posts/123456789'
     },
     {
@@ -591,7 +569,7 @@ const ElectroHuilaIntranet = () => {
       comments: 8,
       shares: 23,
       time: '4 horas',
-      image: '/images/social-2.jpg',
+      image: '/images/faceeins.jpg',
       url: 'https://instagram.com/p/electrohuila123'
     },
     {
@@ -601,12 +579,11 @@ const ElectroHuilaIntranet = () => {
       comments: 24,
       shares: 67,
       time: '1 día',
-      image: '/images/social-3.jpg',
+      image: '/images/ELECTRO-FOTO.png',
       url: 'https://youtube.com/watch?v=electrohuila123'
     }
   ];
-
-  // Oficina de Sistemas - TARJETAS COMPLETAS
+  // Oficina de Sistemas
   const systemsOfficeCards = [
     {
       id: 'updates',
@@ -778,7 +755,6 @@ const ElectroHuilaIntranet = () => {
           url: 'https://soporte.electrohuila.com/kb',
           status: 'Actualizada'
         }
-        
       ]
     },
     {
@@ -873,7 +849,6 @@ const ElectroHuilaIntranet = () => {
       ]
     }
   ];
-
   // Filtrar aplicaciones
   const getFilteredApps = () => {
     let filtered = allApplications;
@@ -909,19 +884,17 @@ const ElectroHuilaIntranet = () => {
   const toggleSystemCard = (cardId) => {
     setExpandedSystemCard(expandedSystemCard === cardId ? null : cardId);
   };
+  // NUEVO: Función para renderizar la vista actual
+  const renderCurrentView = () => {
+    if (currentView === 'nosotros') {
+      return <NosotrosSection onBack={handleBackToHome} />;
+    }
+    if (currentView === 'maestros') { // ← AGREGAR ESTE BLOQUE
+    return <MaestrosSection onBack={handleBackToHome} />;
+  }
 
-  return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Header importado como componente */}
-      <Header 
-        currentDate={currentDate}
-        searchTerm={searchTerm}
-        setSearchTerm={setSearchTerm}
-        showNotifications={showNotifications}
-        setShowNotifications={setShowNotifications}
-      />
-
-      {/* Contenido principal */}
+    // Vista principal (home) - TODO EL CONTENIDO ORIGINAL
+    return (
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         
         {/* Hero section */}
@@ -932,7 +905,7 @@ const ElectroHuilaIntranet = () => {
           </p>
         </div>
 
-        {/* Grid de Aplicaciones */}
+        {/* Grid de Aplicaciones - SIN RECUADROS DE COLOR */}
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center">
@@ -983,11 +956,12 @@ const ElectroHuilaIntranet = () => {
                   </div>
                 )}
 
-                <div className={`bg-gradient-to-br ${app.color} p-4 rounded-2xl mb-4 mx-auto w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg group-hover:shadow-xl`}>
+                {/* CAMBIO: Sin recuadro de color, solo el ícono PNG centrado */}
+                <div className="mb-4 mx-auto w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                   <img 
                     src={app.iconPng} 
                     alt={app.name}
-                    className="w-8 h-8 object-contain filter drop-shadow-sm"
+                    className="w-12 h-12 object-contain filter drop-shadow-sm group-hover:drop-shadow-md transition-all duration-300"
                     onError={(e) => {
                       e.target.style.display = 'none';
                       e.target.nextSibling.style.display = 'block';
@@ -1016,7 +990,7 @@ const ElectroHuilaIntranet = () => {
           </div>
         </div>
 
-        {/* Enlaces Rápidos - 7 ENLACES SEGÚN LA IMAGEN */}
+        {/* Enlaces Rápidos */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Enlaces Rápidos</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-7 gap-4">
@@ -1032,7 +1006,6 @@ const ElectroHuilaIntranet = () => {
             ))}
           </div>
         </div>
-
         {/* Sección Novedades */}
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
@@ -1106,8 +1079,7 @@ const ElectroHuilaIntranet = () => {
             ))}
           </div>
         </div>
-
-        {/* Oficina de Sistemas CON TARJETAS DESPLEGABLES - ANIMACIÓN INDEPENDIENTE */}
+        {/* Oficina de Sistemas */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Oficina de Sistemas</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -1118,7 +1090,6 @@ const ElectroHuilaIntranet = () => {
                   animatingCards[card.id] ? 'transform scale-[1.02]' : ''
                 }`}
               >
-                {/* Header de la tarjeta */}
                 <div 
                   className={`${card.bgColor} p-6 cursor-pointer hover:brightness-110 transition-all duration-200`}
                   onClick={() => toggleSystemCard(card.id)}
@@ -1143,15 +1114,8 @@ const ElectroHuilaIntranet = () => {
                   </div>
                 </div>
 
-                {/* Contenido desplegable con animación independiente */}
                 {expandedSystemCard === card.id && (
-                  <div 
-                    className="bg-gray-50 overflow-hidden"
-                    style={{ 
-                      animation: `expandCard-${card.id} 0.4s ease-out forwards`,
-                      animationFillMode: 'both'
-                    }}
-                  >
+                  <div className="bg-gray-50 overflow-hidden">
                     <div className="p-6">
                       <div className="space-y-3">
                         {card.functions.map((func, index) => (
@@ -1159,12 +1123,6 @@ const ElectroHuilaIntranet = () => {
                             key={index}
                             onClick={() => openApp(func.url)}
                             className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group transform hover:scale-[1.02] hover:-translate-y-1"
-                            style={{
-                              animation: `slideInItem 0.3s ease-out forwards`,
-                              animationDelay: `${index * 0.1}s`,
-                              opacity: 0,
-                              transform: 'translateY(10px)'
-                            }}
                           >
                             <div className="flex items-center space-x-3">
                               <div className={`p-2 rounded-lg ${card.bgColor} bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-200`}>
@@ -1200,7 +1158,6 @@ const ElectroHuilaIntranet = () => {
             ))}
           </div>
         </div>
-
         {/* Sección Galería de Eventos */}
         <div className="mb-16">
           <div className="flex items-center justify-between mb-6">
@@ -1223,7 +1180,6 @@ const ElectroHuilaIntranet = () => {
                   setShowLightbox(true);
                 }}
                 className="relative group cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm border border-gray-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-                style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="relative overflow-hidden">
                   <img 
@@ -1256,10 +1212,10 @@ const ElectroHuilaIntranet = () => {
                   </div>
 
                   <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                    <h3 className="font-bold text-white text-lg mb-2 line-clamp-2">
+                    <h3 className="font-bold text-white text-lg mb-2">
                       {event.title}
                     </h3>
-                    <p className="text-white/90 text-sm mb-2 line-clamp-2">
+                    <p className="text-white/90 text-sm mb-2">
                       {event.description}
                     </p>
                     <div className="flex items-center space-x-2">
@@ -1278,8 +1234,6 @@ const ElectroHuilaIntranet = () => {
                     {event.date}
                   </p>
                 </div>
-
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-300 bg-gradient-to-r from-transparent via-white to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full"></div>
               </div>
             ))}
           </div>
@@ -1290,12 +1244,10 @@ const ElectroHuilaIntranet = () => {
           <div 
             className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={() => setShowLightbox(false)}
-            style={{ animation: 'fadeIn 0.3s ease-out' }}
           >
             <div 
               className="relative max-w-4xl max-h-full bg-white rounded-2xl overflow-hidden shadow-2xl"
               onClick={(e) => e.stopPropagation()}
-              style={{ animation: 'scaleIn 0.3s ease-out' }}
             >
               <button
                 onClick={() => setShowLightbox(false)}
@@ -1350,7 +1302,6 @@ const ElectroHuilaIntranet = () => {
             </div>
           </div>
         )}
-
         {/* Sección Redes Sociales */}
         <div className="mb-16">
           <h2 className="text-2xl font-bold text-gray-900 mb-6">Síguenos en Redes Sociales</h2>
@@ -1396,7 +1347,7 @@ const ElectroHuilaIntranet = () => {
                       </h4>
                       <span className="text-white/80 text-sm">• Hace {post.time}</span>
                     </div>
-                    <p className="text-white text-sm leading-relaxed mb-4 line-clamp-3">
+                    <p className="text-white text-sm leading-relaxed mb-4">
                       {post.content}
                     </p>
                   </div>
@@ -1422,14 +1373,25 @@ const ElectroHuilaIntranet = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="absolute inset-0 bg-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
               </div>
             ))}
           </div>
         </div>
 
       </main>
+    );
+  };
+  return (
+    <div className="min-h-screen bg-gray-50">
+      {/* Header con navegación */}
+      <Header 
+        onNavigate={handleNavigation}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
+
+      {/* Renderizar vista actual */}
+      {renderCurrentView()}
 
       {/* Notificaciones flotantes */}
       {showNotifications && notifications.length > 0 && (
@@ -1525,7 +1487,6 @@ const ElectroHuilaIntranet = () => {
           </span>
         </button>
       )}
-
       {/* Footer */}
       <footer className="bg-white border-t border-gray-200 mt-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
@@ -1581,96 +1542,6 @@ const ElectroHuilaIntranet = () => {
           to {
             opacity: 1;
             transform: scale(1);
-          }
-        }
-
-        /* Animaciones independientes para cada tarjeta de sistemas */
-        @keyframes expandCard-updates {
-          from {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            max-height: 600px;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes expandCard-downloads {
-          from {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            max-height: 700px;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes expandCard-manuals {
-          from {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            max-height: 700px;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes expandCard-support {
-          from {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            max-height: 600px;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes expandCard-inventory {
-          from {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            max-height: 700px;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes expandCard-monitoring {
-          from {
-            max-height: 0;
-            opacity: 0;
-            transform: translateY(-10px);
-          }
-          to {
-            max-height: 600px;
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes slideInItem {
-          from {
-            opacity: 0;
-            transform: translateY(10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
           }
         }
 
