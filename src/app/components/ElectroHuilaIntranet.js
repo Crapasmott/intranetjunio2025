@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import Header from './Header'; // Importar el componente Header
 import NosotrosSection from './NosotrosSection'; // NUEVO: Importar NosotrosSection
 import MaestrosSection from './MaestrosSection'; // ← AGREGAR ESTA LÍNEA
+import GestionJuridicaSection from './GestionJuridicaSection'; // ← AGREGAR ESTA LÍNEA
 import { 
   Bell, 
   Search, 
@@ -140,288 +141,319 @@ const ElectroHuilaIntranet = () => {
   // Aplicaciones con íconos PNG
   const allApplications = [
     {
-      name: 'Mesa de Servicio',
-      desc: 'Sistema de Atención al Cliente',
-      iconPng: '/images/icons/mesa-servicio.png',
-      url: 'https://enlinea.electrohuila.com.co/mesa-servicio/#/',
-      category: 'Servicio',
-      color: 'from-green-500 to-green-600',
-      featured: true
-    },
-    {
-      name: 'SIMAD',
-      desc: 'Sistema Integrado de Administración Documental',
-      iconPng: '/images/iconos/SIMAD.ico',
-      url: 'https://simad.electrohuila.com.co/#',
-      category: 'Documental',
-      color: 'from-blue-500 to-blue-600',
-      featured: true
-    },
-    {
-      name: 'ERP CyberAccount',
-      desc: 'ERP Electrohuila',
-      iconPng: '/images/icons/sig.png',
-      url: 'http://192.9.200.196/erp/registro2.asp',
-      category: 'ERP ',
-      color: 'from-red-500 to-orange-500',
-      featured: true
-    },
-    {
-      name: 'Web SAMI',
-      desc: 'Web SAMI',
-      iconPng: '/images/icons/comercial-maps.png',
-      url: 'http://sami.electrohuila.co:3001/login/',
-      category: 'Web',
-      color: 'from-green-500 to-teal-500',
-      featured: true
-    },
-    {
-      name: 'Sistema Integrado de Gestión',
-      desc: 'Sistema Integrado de Gestión',
-      iconPng: '/images/icons/consulta-oms.png',
-      url: 'http://intranet.electrohuila.com.co/intranet/sig/',
-      category: 'Sistema',
-      color: 'from-purple-500 to-pink-500',
-      featured: true
-    },
-    {
-      name: 'Nómina EH',
-      desc: 'Nómina EH',
-      iconPng: '/images/icons/control-perdidas.png',
-      url: 'http://10.50.35.27:8080/KioscoDesignerRHN-war/?grupo=GrupoEmpresarial1',
-      category: 'Nómina',
-      color: 'from-yellow-500 to-orange-500',
-      featured: true
-    },
-    {
-      name: 'Sistema Local de Consignas',
-      desc: 'Sistema Local de Consignas',
-      iconPng: '/images/icons/registro-cuentas.png',
-      url: 'https://enlinea.electrohuila.com.co/consignas/#/',
-      category: 'Consignas',
-      color: 'from-blue-500 to-cyan-500',
-      featured: true
-    },
-    {
       name: 'Comercial Maps',
       desc: 'Comercial Maps',
-      iconPng: '/images/icons/notificaciones.png',
-      url: 'https://backapp.electrohuila.com.co:8071/maps/comercial/mapa.php',
-      category: 'Comercial Maps',
-      color: 'from-yellow-500 to-amber-500',
-      featured: true
-    },
-    {
-      name: 'Calidad del Servicio',
-      desc: 'Calidad del Servicio',
-      iconPng: '/images/icons/sitio-web.png',
-      url: 'https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Operacion/CALIDAD%20DEL%20SERVICIO/Forms/AllItems.aspx',
-      category: 'Servicio',
-      color: 'from-indigo-500 to-blue-500',
-      featured: true
-    },
-    {
-      name: 'Control de Pérdidas',
-      desc: 'Control de Pérdidas',
-      iconPng: '/images/icons/crehana.png',
-      url: 'http://192.9.200.43/login',
-      category: 'Control',
-      color: 'from-purple-600 to-blue-600',
-      featured: true
-    },
-    {
-      name: 'Electrohuila Mapas',
-      desc: 'Electrohuila Mapas',
-      iconPng: '/images/icons/teamwork.png',
-      url: 'https://backapp.electrohuila.com.co:8071/maps/login.php#no-back-button',
-      category: 'Mapas',
-      color: 'from-blue-500 to-indigo-500',
-      featured: false
-    },
-    {
-      name: 'Facturación Masiva',
-      desc: 'Facturación Masiva',
-      iconPng: '/images/icons/recursos-humanos.png',
-      url: 'https://enlinea.electrohuila.com.co/invoice-massive/#/login',
-      category: 'Facturación Masiva',
-      color: 'from-purple-500 to-blue-500',
-      featured: false
-    },
-    {
-      name: 'Mesa de Servicio',
-      desc: 'Sistema de Atención al Cliente',
-      iconPng: '/images/icons/mesa-servicio.png',
-      url: 'https://enlinea.electrohuila.com.co/mesa-servicio/#/',
-      category: 'Servicio',
+      iconPng: '/images/iconos/map.png',
+      url: 'https://backapp.electrohuila.com.co:8071/maps/login.php',
+      category: 'Comercial',
       color: 'from-green-500 to-green-600',
-      featured: false
-    },
-    {
-      name: 'SIMAD',
-      desc: 'Sistema Integrado de Administración Documental',
-      iconPng: '/images/iconos/SIMAD.ico',
-      url: 'https://simad.electrohuila.com.co/#',
-      category: 'Documental',
-      color: 'from-blue-500 to-blue-600',
-      featured: false
-    },
-    {
-      name: 'ERP CyberAccount',
-      desc: 'ERP Electrohuila',
-      iconPng: '/images/icons/sig.png',
-      url: 'http://192.9.200.196/erp/registro2.asp',
-      category: 'ERP ',
-      color: 'from-red-500 to-orange-500',
-      featured: false
-    },
-    {
-      name: 'Web SAMI',
-      desc: 'Web SAMI',
-      iconPng: '/images/icons/comercial-maps.png',
-      url: 'http://sami.electrohuila.co:3001/login/',
-      category: 'Web',
-      color: 'from-green-500 to-teal-500',
-      featured: false
-    },
-    {
-      name: 'Sistema Integrado de Gestión',
-      desc: 'Sistema Integrado de Gestión',
-      iconPng: '/images/icons/consulta-oms.png',
-      url: 'http://intranet.electrohuila.com.co/intranet/sig/',
-      category: 'Sistema',
-      color: 'from-purple-500 to-pink-500',
-      featured: false
-    },
-    {
-      name: 'Nómina EH',
-      desc: 'Nómina EH',
-      iconPng: '/images/icons/control-perdidas.png',
-      url: 'http://10.50.35.27:8080/KioscoDesignerRHN-war/?grupo=GrupoEmpresarial1',
-      category: 'Nómina',
-      color: 'from-yellow-500 to-orange-500',
-      featured: false
-    },
-    {
-      name: 'Sistema Local de Consignas',
-      desc: 'Sistema Local de Consignas',
-      iconPng: '/images/icons/registro-cuentas.png',
-      url: 'https://enlinea.electrohuila.com.co/consignas/#/',
-      category: 'Consignas',
-      color: 'from-blue-500 to-cyan-500',
-      featured: false
-    },
-    {
-      name: 'Comercial Maps',
-      desc: 'Comercial Maps',
-      iconPng: '/images/icons/notificaciones.png',
-      url: 'https://backapp.electrohuila.com.co:8071/maps/comercial/mapa.php',
-      category: 'Comercial Maps',
-      color: 'from-yellow-500 to-amber-500',
       featured: false
     },
     {
       name: 'Calidad del Servicio',
       desc: 'Calidad del Servicio',
-      iconPng: '/images/icons/sitio-web.png',
+      iconPng: '/images/iconos/encendiendo.png',
       url: 'https://electrohuilaco.sharepoint.com/Cadena_de_Valor/Operacion/CALIDAD%20DEL%20SERVICIO/Forms/AllItems.aspx',
-      category: 'Servicio',
-      color: 'from-indigo-500 to-blue-500',
+      category: ' Servicio',
+      color: 'from-blue-500 to-blue-600',
       featured: false
     },
     {
       name: 'Control de Pérdidas',
       desc: 'Control de Pérdidas',
-      iconPng: '/images/icons/crehana.png',
-      url: 'http://192.9.200.43/login',
-      category: 'Control',
-      color: 'from-purple-600 to-blue-600',
+      iconPng: '/images/iconos/analitico.png',
+      url: 'http://192.9.200.196/erp/registro2.asp',
+      category: 'Control ',
+      color: 'from-red-500 to-orange-500',
       featured: false
     },
     {
       name: 'Electrohuila Mapas',
       desc: 'Electrohuila Mapas',
-      iconPng: '/images/icons/teamwork.png',
+      iconPng: '/images/iconos/ubicacion.png',
       url: 'https://backapp.electrohuila.com.co:8071/maps/login.php#no-back-button',
       category: 'Mapas',
-      color: 'from-blue-500 to-indigo-500',
+      color: 'from-green-500 to-teal-500',
+      featured: false
+    },
+    {
+      name: 'ERP Electrohuila',
+      desc: 'ERP Electrohuila',
+      iconPng: '/images/iconos/ERPLOGO3.png',
+      url: 'http://intranet.electrohuila.com.co/intranet/sig/',
+      category: 'Facturación Masiva',
+      color: 'from-purple-500 to-pink-500',
       featured: false
     },
     {
       name: 'Facturación Masiva',
       desc: 'Facturación Masiva',
-      iconPng: '/images/icons/recursos-humanos.png',
-      url: 'https://enlinea.electrohuila.com.co/invoice-massive/#/login',
-      category: 'Facturación Masiva',
-      color: 'from-purple-500 to-blue-500',
+      iconPng: '/images/iconos/recibo.png',
+      url: 'http://10.50.35.27:8080/KioscoDesignerRHN-war/?grupo=GrupoEmpresarial1',
+      category: 'Facturación',
+      color: 'from-yellow-500 to-orange-500',
       featured: false
     },
     {
-      name: 'Mesa de Servicio',
-      desc: 'Sistema de Atención al Cliente',
-      iconPng: '/images/icons/mesa-servicio.png',
-      url: 'https://enlinea.electrohuila.com.co/mesa-servicio/#/',
-      category: 'Servicio',
-      color: 'from-green-500 to-green-600',
+      name: 'Gestión Integral en RH y Nómina',
+      desc: 'Gestión Integral en RH y Nómina',
+      iconPng: '/images/iconos/gestion-del-talento.png',
+      url: 'https://enlinea.electrohuila.com.co/consignas/#/',
+      category: 'Gestión ',
+      color: 'from-blue-500 to-cyan-500',
+      featured: false
+    },
+    
+{
+  name: 'Gestión Jurídica',
+  desc: 'Normatividad, códigos y documentos legales',
+  iconPng: '/images/iconos/libro-de-leyes.png',
+  url: 'gestion-juridica', // ← CAMBIO CLAVE
+  category: 'Legal',
+  color: 'from-blue-500 to-indigo-600',
+  featured: false
+},
+    {
+      name: 'Gestión Transversal',
+      desc: 'Gestión Transversal',
+      iconPng: '/images/iconos/portapapeles.png',
+      url: '',
+      category: 'Gestión ',
+      color: 'from-indigo-500 to-blue-500',
       featured: false
     },
     {
-      name: 'SIMAD',
-      desc: 'Sistema Integrado de Administración Documental',
-      iconPng: '/images/iconos/SIMAD.ico',
-      url: 'https://simad.electrohuila.com.co/#',
-      category: 'Documental',
-      color: 'from-blue-500 to-blue-600',
-      featured: false
-    },
-    {
-      name: 'ERP CyberAccount',
-      desc: 'ERP Electrohuila',
-      iconPng: '/images/icons/sig.png',
-      url: 'http://192.9.200.196/erp/registro2.asp',
-      category: 'ERP ',
-      color: 'from-red-500 to-orange-500',
-      featured: false
-    },
-    {
-      name: 'Web SAMI',
-      desc: 'Web SAMI',
-      iconPng: '/images/icons/comercial-maps.png',
-      url: 'http://sami.electrohuila.co:3001/login/',
-      category: 'Web',
-      color: 'from-green-500 to-teal-500',
-      featured: false
-    },
-    {
-      name: 'Sistema Integrado de Gestión',
-      desc: 'Sistema Integrado de Gestión',
-      iconPng: '/images/icons/consulta-oms.png',
-      url: 'http://intranet.electrohuila.com.co/intranet/sig/',
-      category: 'Sistema',
-      color: 'from-purple-500 to-pink-500',
+      name: 'Inventario TIC EH',
+      desc: 'Inventario TIC EH',
+      iconPng: '/images/iconos/gestion-de-materiales.png',
+      url: '',
+      category: 'Inventario',
+      color: 'from-purple-600 to-blue-600',
       featured: false
     },
     {
       name: 'Nómina EH',
       desc: 'Nómina EH',
-      iconPng: '/images/icons/control-perdidas.png',
-      url: 'http://10.50.35.27:8080/KioscoDesignerRHN-war/?grupo=GrupoEmpresarial1',
-      category: 'Nómina',
-      color: 'from-yellow-500 to-orange-500',
+      iconPng: '/images/iconos/nomina-eh.png',
+      url: 'https://backapp.electrohuila.com.co:8071/maps/login.php#no-back-button',
+      category: 'Nómina ',
+      color: 'from-blue-500 to-indigo-500',
       featured: false
+    },
+    {
+      name: 'Notificaciones Web',
+      desc: 'Notificaciones Web',
+      iconPng: '/images/iconos/notificacion.png',
+      url: '',
+      category: 'Notificaciones',
+      color: 'from-purple-500 to-blue-500',
+      featured: false
+    },
+    {
+      name: 'Página Web Principal',
+      desc: 'Página Web Principal',
+      iconPng: '/images/iconos/web-eh.png',
+      url: '',
+      category: 'Web Principal',
+      color: 'from-green-500 to-green-600',
+      featured: false
+    },
+    {
+      name: 'Plataforma Para Procesos provisionados',
+      desc: 'Plataforma Para Procesos provisionados',
+      iconPng: '/images/iconos/computadora.png',
+      url: '',
+      category: 'Plataforma ',
+      color: 'from-blue-500 to-blue-600',
+      featured: false
+    },
+    {
+      name: 'Portal Interacción Corporativa',
+      desc: 'Portal Interacción Corporativa',
+      iconPng: '/images/iconos/reunion.png',
+      url: '',
+      category: 'Portal',
+      color: 'from-red-500 to-orange-500',
+      featured: false
+    },
+    {
+      name: 'Reporte Cartera Comercial ',
+      desc: 'Power BI',
+      iconPng: '/images/iconos/analisis-de-datos.png',
+      url: '',
+      category: 'Power BI',
+      color: 'from-green-500 to-teal-500',
+      featured: false
+    },
+    {
+      name: 'Seguridad Transversal',
+      desc: 'Seguridad Transversal',
+      iconPng: '/images/iconos/proteger.png',
+      url: '',
+      category: 'Seguridad',
+      color: 'from-purple-500 to-pink-500',
+      featured: false
+    },
+    {
+      name: 'SIMAD',
+      desc: 'SIMAD',
+      iconPng: '/images/iconos/SIMAD.png',
+      url: '',
+      category: 'SIMAD',
+      color: 'from-yellow-500 to-orange-500',
+      featured: true
+    },
+    {
+      name: 'Sistema Integrado de Gestión',
+      desc: 'Sistema Integrado de Gestión',
+      iconPng: '/images/iconos/SIG.png',
+      url: '',
+      category: 'Sistema',
+      color: 'from-blue-500 to-cyan-500',
+      featured: true
+    },
+    {
+      name: 'Sistema Local de Consignas',
+      desc: 'Sistema Local de Consignas',
+      iconPng: '/images/iconos/SLlogo.png',
+      url: '',
+      category: 'Sistema',
+      color: 'from-yellow-500 to-amber-500',
+      featured: true
+    },
+    {
+      name: 'Control Permiso Ambiental',
+      desc: 'Control Permiso Ambiental',
+      iconPng: '/images/iconos/ambientalismo.png',
+      url: '',
+      category: 'Control ',
+      color: 'from-indigo-500 to-blue-500',
+      featured: false
+    },
+    {
+      name: 'Web SAMI',
+      desc: 'Web SAMI',
+      iconPng: '/images/iconos/sami.png',
+      url: '',
+      category: 'SAMI',
+      color: 'from-purple-600 to-blue-600',
+      featured: true
+    },
+    {
+      name: 'Admin Intranet',
+      desc: 'Admin Intranet',
+      iconPng: '/images/iconos/wp-admin-intranet.png',
+      url: '',
+      category: 'Intranet',
+      color: 'from-blue-500 to-indigo-500',
+      featured: false
+    },
+    {
+      name: 'Cuentas Nuevas',
+      desc: 'Cuentas Nuevas',
+      iconPng: '/images/iconos/datos.png',
+      url: '',
+      category: 'Cuentas',
+      color: 'from-purple-500 to-blue-500',
+      featured: false
+    },
+    {
+      name: 'EH-Redemtor v1.0',
+      desc: 'EH-Redemtor v1.0',
+      iconPng: '/images/iconos/LogoNBG-400x400.png',
+      url: '',
+      category: 'EH-Redemtor',
+      color: 'from-green-500 to-green-600',
+      featured: false
+    },
+    {
+      name: 'Informa Colombia',
+      desc: 'Informa Colombia',
+      iconPng: '/images/iconos/Informa_logo_20230831_023112112.png',
+      url: '',
+      category: 'Informa ',
+      color: 'from-blue-500 to-blue-600',
+      featured: false
+    },
+    {
+      name: 'Reporte Recaudo SIEC',
+      desc: 'Reporte Recaudo SIEC',
+      iconPng: '/images/iconos/informe-de-venta.png',
+      url: '',
+      category: 'Reporte',
+      color: 'from-red-500 to-orange-500',
+      featured: false
+    },
+    {
+      name: 'Consulta Comercial',
+      desc: 'Consulta Comercial',
+      iconPng: '/images/iconos/oficina-del-doctor.png',
+      url: '',
+      category: 'Consulta',
+      color: 'from-green-500 to-teal-500',
+      featured: false
+    },
+    {
+      name: 'Facturación Electrónica',
+      desc: 'Facturación Electrónica',
+      iconPng: '/images/iconos/facturacion-en-linea.png',
+      url: '',
+      category: 'Facturación ',
+      color: 'from-purple-500 to-pink-500',
+      featured: false
+    },
+    {
+      name: 'Mesa de Servicios',
+      desc: 'Mesa de Servicios',
+      iconPng: '/images/iconos/servicio-al-cliente.png',
+      url: '',
+      category: 'Servicios',
+      color: 'from-yellow-500 to-orange-500',
+      featured: true
     },
   
   ];
-  // Enlaces rápidos
-  const quickLinks = [
-    {
-      name: 'Calendario Tributario 2024',
-      icon: Calendar,
-      url: 'https://calendario2024.electrohuila.com',
-      bgColor: 'bg-blue-500'
-    },
-    
-   
-  ];
+ // COLOCA ESTO DESPUÉS DE LOS IMPORTS Y ANTES DE "const ElectroHuilaIntranet = () => {"
+
+// Enlaces rápidos - 6 enlaces como en la imagen
+const quickLinks = [
+  {
+    name: 'Calendario Tributario 2024',
+    icon: Calendar,
+    url: 'https://calendario2024.electrohuila.com',
+    bgColor: 'bg-blue-500'
+  },
+  {
+    name: 'Calendario Tributario 2025',
+    icon: Calendar,
+    url: 'https://calendario2025.electrohuila.com',
+    bgColor: 'bg-blue-500'
+  },
+  {
+    name: 'Reporte diario de salud',
+    icon: Heart,
+    url: 'https://salud.electrohuila.com',
+    bgColor: 'bg-blue-500'
+  },
+  {
+    name: 'Correo Office 365',
+    icon: Mail,
+    url: 'https://outlook.office365.com',
+    bgColor: 'bg-blue-500'
+  },
+  {
+    name: 'Sitio web principal',
+    icon: Globe,
+    url: 'https://www.electrohuila.com',
+    bgColor: 'bg-blue-500'
+  },
+  {
+    name: 'Protocolos de bioseguridad',
+    icon: Shield,
+    url: 'https://bioseguridad.electrohuila.com',
+    bgColor: 'bg-blue-500'
+  }
+];
 
   // Novedades
   const news = [
@@ -877,9 +909,16 @@ const ElectroHuilaIntranet = () => {
     setAnimationKey(prev => prev + 1);
   };
 
-  const openApp = (url) => {
-    window.open(url, '_blank', 'noopener,noreferrer');
-  };
+ const openApp = (url) => {
+  // Rutas internas específicas
+  if (url === 'gestion-juridica') {
+    setCurrentView('gestion-juridica');
+    return;
+  }
+  
+  // URLs externas
+  window.open(url, '_blank', 'noopener,noreferrer');
+};
 
   const toggleSystemCard = (cardId) => {
     setExpandedSystemCard(expandedSystemCard === cardId ? null : cardId);
@@ -892,7 +931,10 @@ const ElectroHuilaIntranet = () => {
     if (currentView === 'maestros') { // ← AGREGAR ESTE BLOQUE
     return <MaestrosSection onBack={handleBackToHome} />;
   }
-
+// AGREGAR ESTE NUEVO CASE:
+  if (currentView === 'gestion-juridica') {
+    return <GestionJuridicaSection onBack={handleBackToHome} />;
+  }
     // Vista principal (home) - TODO EL CONTENIDO ORIGINAL
     return (
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
@@ -947,7 +989,7 @@ const ElectroHuilaIntranet = () => {
             {filteredApps.map((app, index) => (
               <div 
                 key={`${app.name}-${index}`}
-                onClick={() => openApp(app.url)}
+                onClick={() => openApp(app.url, app.internalRoute)}
                 className="relative group bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-2xl hover:border-blue-200 transition-all duration-300 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
               >
                 {app.featured && (
