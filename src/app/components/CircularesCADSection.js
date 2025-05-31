@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   FileSearch, 
   ChevronLeft, 
@@ -20,7 +20,6 @@ const CircularesCADSection = ({ onBack }) => {
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedYear, setSelectedYear] = useState('all');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [hoveredCard, setHoveredCard] = useState(null);
 
   // Datos de ejemplo de circulares (reemplaza con datos reales)
   const circulares = [
@@ -216,8 +215,6 @@ const CircularesCADSection = ({ onBack }) => {
             <div
               key={circular.id}
               className="group bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-2 cursor-pointer overflow-hidden relative"
-              onMouseEnter={() => setHoveredCard(circular.id)}
-              onMouseLeave={() => setHoveredCard(null)}
               style={{
                 animationDelay: `${index * 100}ms`,
                 animation: 'fadeInUp 0.6s ease-out forwards'
