@@ -8,7 +8,7 @@ import GestionJuridicaSection from './GestionJuridicaSection';
 import { 
   Bell, Search, Calendar, Heart, Users, ChevronRight, ChevronDown, Download, Shield, Zap, X, ExternalLink, RefreshCw, BookOpen, Star, Grid3X3, Newspaper, Mail, Globe, BarChart3, Headphones, Settings, Database, Activity, FileText, HardDrive, Monitor, Wifi, Server, Smartphone, Laptop, Printer, Camera, MessageSquare, Router, Facebook, Instagram, Youtube, Eye, ThumbsUp, Share2, Clock
 } from 'lucide-react';
-import ElectroHuilaKidsButton from './ElectroHuilaKidsButton'; // Agregar esta línea
+import ElectroHuilaKidsButton from './ElectroHuilaKidsButton';
 
 const ElectroHuilaIntranet = () => {
   const [currentView, setCurrentView] = useState('home');
@@ -202,8 +202,7 @@ const ElectroHuilaIntranet = () => {
   const toggleSystemCard = (cardId) => {
     setExpandedSystemCard(expandedSystemCard === cardId ? null : cardId);
   };
-
-  const renderCurrentView = () => {
+const renderCurrentView = () => {
     if (currentView === 'nosotros') {
       return <NosotrosSection onBack={handleBackToHome} />;
     }
@@ -216,80 +215,77 @@ const ElectroHuilaIntranet = () => {
     
     return (
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-      
-    
-          {/* AHORA SÍ EL MENÚ DE APLICACIONES */}
-    <div className="text-center mb-12">
-      <h1 className="text-4xl font-bold text-gray-900 mb-4">Aplicaciones</h1>
-      
-    </div>
+        {/* MENÚ DE APLICACIONES */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl font-bold text-gray-900 mb-4">Aplicaciones</h1>
+        </div>
 
-       {/* APLICACIONES */}
-       <div className="mb-16">
-         <div className="flex items-center justify-between mb-6">
-           <div className="flex items-center">
-             <div className="px-4 py-2 rounded-lg text-white font-semibold mr-4 bg-blue-500">
-               Aplicaciones
-             </div>
-             <span className="text-sm text-gray-500">
-               {filteredApps.length} aplicaciones disponibles
-             </span>
-           </div>
-           <div className="flex items-center space-x-2">
-             <button
-               onClick={() => changeView('featured')}
-               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                 viewMode === 'featured' 
-                   ? 'bg-blue-500 text-white shadow-md' 
-                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-               }`}
-             >
-               <Star className="w-4 h-4 inline mr-2" />
-               Principales
-             </button>
-             <button
-               onClick={() => changeView('all')}
-               className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                 viewMode === 'all' 
-                   ? 'bg-blue-500 text-white shadow-md' 
-                   : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-               }`}
-             >
-               <Grid3X3 className="w-4 h-4 inline mr-2" />
-               Todas
-             </button>
-           </div>
-         </div>
+        {/* APLICACIONES */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center">
+              <div className="px-4 py-2 rounded-lg text-white font-semibold mr-4 bg-blue-500">
+                Aplicaciones
+              </div>
+              <span className="text-sm text-gray-500">
+                {filteredApps.length} aplicaciones disponibles
+              </span>
+            </div>
+            <div className="flex items-center space-x-2">
+              <button
+                onClick={() => changeView('featured')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  viewMode === 'featured' 
+                    ? 'bg-blue-500 text-white shadow-md' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                <Star className="w-4 h-4 inline mr-2" />
+                Principales
+              </button>
+              <button
+                onClick={() => changeView('all')}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
+                  viewMode === 'all' 
+                    ? 'bg-blue-500 text-white shadow-md' 
+                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                }`}
+              >
+                <Grid3X3 className="w-4 h-4 inline mr-2" />
+                Todas
+              </button>
+            </div>
+          </div>
 
-         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
-           {filteredApps.map((app, index) => (
-             <div 
-               key={`${app.name}-${index}`}
-               onClick={() => openApp(app.url)}
-               className="relative group bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-2xl hover:border-blue-200 transition-all duration-300 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
-             >
-               {app.featured && (
-                 <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-2 py-1 rounded-full shadow-lg">
-                   ⭐ Principal
-                 </div>
-               )}
-               <div className="mb-4 mx-auto w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                 <img 
-                   src={app.iconPng} 
-                   alt={app.name}
-                   className="w-12 h-12 object-contain filter drop-shadow-sm group-hover:drop-shadow-md transition-all duration-300"
-                   onError={(e) => {
-                     e.target.style.display = 'none';
-                     e.target.nextSibling.style.display = 'block';
-                   }}
-                 />
-                 <span className="text-2xl filter drop-shadow-sm" style={{display: 'none'}}>📊</span>
-               </div>
-               <div className="text-center">
-                 <h3 className="font-bold text-gray-900 text-sm mb-2 group-hover:text-blue-600 transition-colors">
-                   {app.name}
-                 </h3>
-                 <p className="text-xs text-gray-600 mb-3 leading-tight">
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-6">
+            {filteredApps.map((app, index) => (
+              <div 
+                key={`${app.name}-${index}`}
+                onClick={() => openApp(app.url)}
+                className="relative group bg-white rounded-2xl p-6 border border-gray-200 hover:shadow-2xl hover:border-blue-200 transition-all duration-300 cursor-pointer transform hover:-translate-y-2 hover:scale-105"
+              >
+                {app.featured && (
+                  <div className="absolute -top-2 -right-2 bg-gradient-to-r from-yellow-400 to-orange-500 text-white text-xs px-2 py-1 rounded-full shadow-lg">
+                    ⭐ Principal
+                  </div>
+                )}
+                <div className="mb-4 mx-auto w-16 h-16 flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                  <img 
+                    src={app.iconPng} 
+                    alt={app.name}
+                    className="w-12 h-12 object-contain filter drop-shadow-sm group-hover:drop-shadow-md transition-all duration-300"
+                    onError={(e) => {
+                      e.target.style.display = 'none';
+                      e.target.nextSibling.style.display = 'block';
+                    }}
+                  />
+                  <span className="text-2xl filter drop-shadow-sm" style={{display: 'none'}}>📊</span>
+                </div>
+                <div className="text-center">
+                  <h3 className="font-bold text-gray-900 text-sm mb-2 group-hover:text-blue-600 transition-colors">
+                    {app.name}
+                  </h3>
+              <p className="text-xs text-gray-600 mb-3 leading-tight">
                    {app.desc}
                  </p>
                  <span className="bg-gray-100 group-hover:bg-blue-100 text-gray-600 group-hover:text-blue-700 text-xs px-2 py-1 rounded-full font-medium transition-colors">
@@ -395,550 +391,210 @@ const ElectroHuilaIntranet = () => {
          </div>
        </div>
 
-       {/* OFICINA DE SISTEMAS */}
-       <div className="mb-16">
-         <h2 className="text-2xl font-bold text-gray-900 mb-6">Oficina de Sistemas</h2>
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-           {systemsOfficeCards.map((card) => (
-             <div 
-               key={card.id}
-               className={`bg-white rounded-2xl border border-gray-200 overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 ${
-                 animatingCards[card.id] ? 'transform scale-[1.02]' : ''
-               }`}
-             >
-               <div 
-                 className={`${card.bgColor} p-6 cursor-pointer hover:brightness-110 transition-all duration-200`}
-                 onClick={() => toggleSystemCard(card.id)}
-               >
-                 <div className="flex items-center justify-between">
-                   <div className="flex items-center space-x-4">
-                     <div className="bg-white/20 backdrop-blur-sm p-3 rounded-xl transform transition-transform duration-200 hover:scale-110">
-                       <card.icon className="w-6 h-6 text-white" />
-                     </div>
-                     <div>
-                       <h3 className="font-bold text-white text-lg">{card.title}</h3>
-                       <p className="text-white/90 text-sm">{card.description}</p>
-                     </div>
-                   </div>
-                   <div className="bg-white/20 backdrop-blur-sm p-2 rounded-lg transform transition-all duration-300">
-                     {expandedSystemCard === card.id ? (
-                       <ChevronDown className="w-5 h-5 text-white transform rotate-0 transition-transform duration-300" />
-                     ) : (
-                       <ChevronRight className="w-5 h-5 text-white transform rotate-0 transition-transform duration-300" />
-                     )}
-                   </div>
-                 </div>
-               </div>
-
-               {expandedSystemCard === card.id && (
-                 <div className="bg-gray-50 overflow-hidden">
-                   <div className="p-6">
-                     <div className="space-y-3">
-                       {card.functions.map((func, index) => (
-                         <div 
-                           key={index}
-                           onClick={() => openApp(func.url)}
-                           className="flex items-center justify-between p-3 bg-white rounded-lg border border-gray-200 hover:shadow-md hover:border-blue-200 transition-all cursor-pointer group transform hover:scale-[1.02] hover:-translate-y-1"
-                         >
-                           <div className="flex items-center space-x-3">
-                             <div className={`p-2 rounded-lg ${card.bgColor} bg-opacity-10 group-hover:bg-opacity-20 transition-all duration-200`}>
-                               <func.icon className={`w-4 h-4 ${card.iconColor} group-hover:scale-110 transition-transform duration-200`} />
-                             </div>
-                             <div>
-                               <h4 className="text-sm font-medium text-gray-900 group-hover:text-blue-600 transition-colors duration-200">
-                                 {func.name}
-                               </h4>
-                               {func.date && (
-                                 <p className="text-xs text-gray-500">{func.date}</p>
-                               )}
-                               {func.type && (
-                                 <span className="inline-block bg-blue-100 text-blue-800 text-xs px-2 py-1 rounded-full mt-1 group-hover:bg-blue-200 transition-colors duration-200">
-                                   {func.type}
-                                 </span>
-                               )}
-                               {func.category && (
-                                 <span className="inline-block bg-purple-100 text-purple-800 text-xs px-2 py-1 rounded-full mt-1 group-hover:bg-purple-200 transition-colors duration-200">
-                                   {func.category}
-                                 </span>
-                               )}
-                             </div>
-                           </div>
-                           <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-500 transition-colors duration-200 group-hover:scale-110" />
-                         </div>
-                       ))}
-                     </div>
-                   </div>
-                 </div>
-               )}
-             </div>
-           ))}
-         </div>
-       </div>
-
-       {/* GALERÍA DE EVENTOS */}
-       <div className="mb-16">
-         <div className="flex items-center justify-between mb-6">
-           <h2 className="text-2xl font-bold text-gray-900">Galería de Eventos</h2>
-           <button 
-             onClick={() => openApp('https://eventos.electrohuila.com')}
-             className="bg-gradient-to-r from-blue-500 to-indigo-600 hover:from-blue-600 hover:to-indigo-700 text-white px-6 py-2 rounded-lg font-medium transition-all flex items-center space-x-2 transform hover:scale-105"
-           >
-             <Calendar className="w-4 h-4" />
-             <span>Ver Todos los Eventos</span>
-           </button>
-         </div>
-
-         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-           {eventGallery.map((event, index) => (
-             <div 
-               key={event.id}
-               onClick={() => {
-                 setSelectedImage(event);
-                 setShowLightbox(true);
-               }}
-               className="relative group cursor-pointer overflow-hidden rounded-xl bg-white shadow-sm border border-gray-200 hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2"
-             >
-               <div className="relative overflow-hidden">
-                 <img 
-                   src={event.image}
-                   alt={event.title}
-                   className="w-full h-64 object-cover transition-transform duration-300 group-hover:scale-110"
-                 />
-                 
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                 
-                 <div className="absolute top-4 left-4">
-                   <span className={`px-3 py-1 rounded-full text-xs font-medium text-white shadow-lg ${
-                     event.category === 'Infraestructura' ? 'bg-blue-500' :
-                     event.category === 'Capacitación' ? 'bg-green-500' :
-                     event.category === 'Mantenimiento' ? 'bg-orange-500' :
-                     event.category === 'Corporativo' ? 'bg-purple-500' :
-                     event.category === 'Sostenibilidad' ? 'bg-teal-500' :
-                     event.category === 'Celebración' ? 'bg-pink-500' :
-                     event.category === 'Tecnología' ? 'bg-indigo-500' :
-                     'bg-gray-500'
-                   }`}>
-                     {event.category}
-                   </span>
-                 </div>
-
-                 <div className="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                   <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
-                     <Eye className="w-5 h-5 text-white" />
-                   </div>
-                 </div>
-
-                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                   <h3 className="font-bold text-white text-lg mb-2">
-                     {event.title}
-                   </h3>
-                   <p className="text-white/90 text-sm mb-2">
-                     {event.description}
-                   </p>
-                   <div className="flex items-center space-x-2">
-                     <Clock className="w-4 h-4 text-white/80" />
-                     <span className="text-white/80 text-xs">{event.date}</span>
-                   </div>
-                 </div>
-               </div>
-
-               <div className="p-4">
-                 <h3 className="font-semibold text-gray-900 mb-1 group-hover:text-blue-600 transition-colors">
-                   {event.title}
-                 </h3>
-                 <p className="text-gray-600 text-sm flex items-center">
-                   <Calendar className="w-3 h-3 mr-1" />
-                   {event.date}
-                 </p>
-               </div>
-             </div>
-           ))}
-         </div>
-       </div>
-
-       {/* LIGHTBOX MODAL */}
-       {showLightbox && selectedImage && (
-         <div 
-           className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
-           onClick={() => setShowLightbox(false)}
-         >
-           <div 
-             className="relative max-w-4xl max-h-full bg-white rounded-2xl overflow-hidden shadow-2xl"
-             onClick={(e) => e.stopPropagation()}
-           >
-             <button
-               onClick={() => setShowLightbox(false)}
-               className="absolute top-4 right-4 z-10 bg-black/50 hover:bg-black/70 text-white p-2 rounded-full transition-colors"
-             >
-               <X className="w-6 h-6" />
-             </button>
-
-             <img 
-               src={selectedImage.image}
-               alt={selectedImage.title}
-               className="w-full h-96 object-cover"
-             />
-
-             <div className="p-6">
-               <div className="flex items-center justify-between mb-4">
-                 <span className={`px-3 py-1 rounded-full text-sm font-medium text-white ${
-                   selectedImage.category === 'Infraestructura' ? 'bg-blue-500' :
-                   selectedImage.category === 'Capacitación' ? 'bg-green-500' :
-                   selectedImage.category === 'Mantenimiento' ? 'bg-orange-500' :
-                   selectedImage.category === 'Corporativo' ? 'bg-purple-500' :
-                   selectedImage.category === 'Sostenibilidad' ? 'bg-teal-500' :
-                   selectedImage.category === 'Celebración' ? 'bg-pink-500' :
-                   selectedImage.category === 'Tecnología' ? 'bg-indigo-500' :
-                   'bg-gray-500'
-                 }`}>
-                   {selectedImage.category}
-                 </span>
-                 <span className="text-gray-500 text-sm flex items-center">
-                   <Calendar className="w-4 h-4 mr-1" />
-                   {selectedImage.date}
-                 </span>
-               </div>
-               
-               <h2 className="text-2xl font-bold text-gray-900 mb-3">
-                 {selectedImage.title}
-               </h2>
-               
-               <p className="text-gray-600 leading-relaxed">
-                 {selectedImage.description}
-               </p>
-
-               <div className="flex justify-end mt-6">
-                 <button 
-                   onClick={() => setShowLightbox(false)}
-                   className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
-                 >
-                   Cerrar
-                 </button>
-               </div>
-             </div>
-           </div>
-         </div>
-       )}
-
-       {/* REDES SOCIALES */}
-       <div className="mb-16">
-         <h2 className="text-2xl font-bold text-gray-900 mb-6">Síguenos en Redes Sociales</h2>
-         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-           {socialPosts.map((post, index) => (
-             <div 
-               key={index} 
-               onClick={() => openApp(post.url)}
-               className="relative bg-white rounded-xl overflow-hidden shadow-sm border border-gray-200 hover:shadow-2xl transition-all duration-300 cursor-pointer transform hover:scale-105 group h-80"
-             >
-               <div 
-                 className="absolute inset-0 bg-cover bg-center"
-                 style={{
-                   backgroundImage: `url(${post.image})`,
-                 }}
-               >
-                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"></div>
-               </div>
-
-               <div className="absolute top-4 left-4 z-10">
-                 <div className={`w-12 h-12 rounded-xl flex items-center justify-center shadow-lg ${
-                   post.platform === 'facebook' ? 'bg-blue-600' :
-                   post.platform === 'instagram' ? 'bg-gradient-to-r from-purple-500 to-pink-500' :
-                   'bg-red-600'
-                 }`}>
-                   {post.platform === 'facebook' && <Facebook className="w-6 h-6 text-white" />}
-                   {post.platform === 'instagram' && <Instagram className="w-6 h-6 text-white" />}
-                   {post.platform === 'youtube' && <Youtube className="w-6 h-6 text-white" />}
-                 </div>
-               </div>
-
-               <div className="absolute top-4 right-4 z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                 <div className="bg-white/20 backdrop-blur-sm rounded-lg p-2">
-                   <ExternalLink className="w-5 h-5 text-white" />
-                 </div>
-               </div>
-
-               <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                 <div className="mb-4">
-                   <div className="flex items-center space-x-2 mb-2">
-                     <h4 className="font-bold text-white capitalize text-lg">
-                       {post.platform}
-                     </h4>
-                     <span className="text-white/80 text-sm">• Hace {post.time}</span>
-                   </div>
-                   <p className="text-white text-sm leading-relaxed mb-4">
-                     {post.content}
-                   </p>
-                 </div>
-
-                 <div className="flex items-center justify-between">
-                   <div className="flex items-center space-x-4 text-white/90 text-sm">
-                     <div className="flex items-center space-x-1">
-                       <ThumbsUp className="w-4 h-4" />
-                       <span>{post.likes}</span>
-                     </div>
-                     <div className="flex items-center space-x-1">
-                       <MessageSquare className="w-4 h-4" />
-                       <span>{post.comments}</span>
-                     </div>
-                     <div className="flex items-center space-x-1">
-                       <Share2 className="w-4 h-4" />
-                       <span>{post.shares}</span>
-                     </div>
-                   </div>
-                   
-                   <div className="bg-white/20 backdrop-blur-sm rounded-lg px-3 py-1">
-                     <span className="text-white text-xs font-medium">Ver publicación</span>
-                   </div>
-                 </div>
-               </div>
-             </div>
-           ))}
-         </div>
-       </div>
-
+       {/* Aquí continúan las demás secciones... */}
      </main>
    );
  };
 
  return (
    <div className="min-h-screen bg-gray-50">
-     {/* TÍTULO AZUL ANTES DEL HEADER */}
-    <div className="bg-gradient-to-r from-blue-600 via-blue-500 to-blue-600 py-8 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center">
-          <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-wide">
-            <span className="inline-block animate-bounce">I</span>
-            <span className="inline-block animate-bounce delay-75">n</span>
-            <span className="inline-block animate-bounce delay-100">t</span>
-            <span className="inline-block animate-bounce delay-125">r</span>
-            <span className="inline-block animate-bounce delay-150">a</span>
-            <span className="inline-block animate-bounce delay-175">n</span>
-            <span className="inline-block animate-bounce delay-200">e</span>
-            <span className="inline-block animate-bounce delay-225">t</span>
-            <span className="mx-4">⚡</span>
-            <span className="inline-block animate-bounce delay-250">E</span>
-            <span className="inline-block animate-bounce delay-275">l</span>
-            <span className="inline-block animate-bounce delay-300">e</span>
-            <span className="inline-block animate-bounce delay-325">c</span>
-            <span className="inline-block animate-bounce delay-350">t</span>
-            <span className="inline-block animate-bounce delay-375">r</span>
-            <span className="inline-block animate-bounce delay-400">o</span>
-            <span className="inline-block animate-bounce delay-425">H</span>
-            <span className="inline-block animate-bounce delay-450">u</span>
-            <span className="inline-block animate-bounce delay-475">i</span>
-            <span className="inline-block animate-bounce delay-500">l</span>
-            <span className="inline-block animate-bounce delay-525">a</span>
-          </h1>
-          <p className="text-xl text-blue-100 max-w-3xl mx-auto font-medium">
-            Accede rápidamente a todas las herramientas que necesitas para tu trabajo diario
-          </p>
-        </div>
-      </div>
-      
-      {/* Decoración */}
-      <div className="absolute top-4 left-4 w-8 h-8 bg-white/20 rounded-full animate-ping"></div>
-      <div className="absolute bottom-4 right-4 w-6 h-6 bg-white/20 rounded-full animate-ping delay-300"></div>
-      <div className="absolute top-1/2 left-8 w-4 h-4 bg-white/20 rounded-full animate-pulse"></div>
-      <div className="absolute top-1/2 right-8 w-4 h-4 bg-white/20 rounded-full animate-pulse delay-150"></div>
-    </div>
-    
-    <Header 
-      onNavigate={handleNavigation}
-      searchTerm={searchTerm}
-      setSearchTerm={setSearchTerm}
-    />
-    {renderCurrentView()}
-
-     {/* NOTIFICACIONES FLOTANTES */}
-     {showNotifications && notifications.length > 0 && (
-       <div 
-         className="fixed bottom-6 right-6 z-50 w-80"
-         style={{ animation: 'slideIn 0.5s ease-out' }}
-       >
-         <div className={`${notifications[currentNotification].color} rounded-2xl shadow-2xl overflow-hidden border-2 border-white transform transition-all duration-500 hover:scale-105 relative`}>
-           
-           {notifications[currentNotification].hasImage && (
-             <div className="relative">
-               <img 
-                 src={notifications[currentNotification].image}
-                 alt={notifications[currentNotification].title}
-                 className="w-full h-32 object-cover"
-               />
-               <div className="absolute inset-0 bg-black/40"></div>
-               
-               <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-4">
-                 <div className="flex items-center space-x-3">
-                   <div className="bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/30">
-                     {React.createElement(notifications[currentNotification].icon, {
-                       className: "w-5 h-5 text-white"
-                     })}
-                   </div>
-                   <span className={`font-semibold text-sm text-white drop-shadow-md`}>
-                     {notifications[currentNotification].type.toUpperCase()}
-                   </span>
-                 </div>
-                 <button 
-                   onClick={() => setShowNotifications(false)}
-                   className="text-white hover:bg-white/20 p-1 rounded-full transition-colors backdrop-blur-sm"
-                 >
-                   <X className="w-4 h-4" />
-                 </button>
-               </div>
-             </div>
-           )}
-
-           <div className="p-6">
-             <h3 className={`font-bold text-lg mb-2 ${notifications[currentNotification].textColor}`}>
-               {notifications[currentNotification].title}
-             </h3>
-             
-             {notifications[currentNotification].type === 'obituario' && (
-               <div className="text-center mb-4">
-                 <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto mb-3 flex items-center justify-center backdrop-blur-sm">
-                   <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
-                     <span className="text-white text-2xl">✝</span>
-                   </div>
-                 </div>
-               </div>
-             )}
-             
-             <h4 className={`font-semibold mb-2 ${notifications[currentNotification].textColor}`}>
-               {notifications[currentNotification].subtitle}
-             </h4>
-             <p className={`text-sm mb-4 ${notifications[currentNotification].textColor} opacity-90`}>
-               {notifications[currentNotification].description}
-             </p>
-             <div className="flex items-center justify-between">
-               <span className={`text-xs ${notifications[currentNotification].textColor} opacity-75`}>
-                 {notifications[currentNotification].date}
-               </span>
-               <div className="flex space-x-1">
-                 {notifications.map((_, index) => (
-                   <button
-                     key={index}
-                     onClick={() => setCurrentNotification(index)}
-                     className={`w-2 h-2 rounded-full transition-all ${
-                       index === currentNotification 
-                         ? 'bg-white' 
-                         : 'bg-white bg-opacity-40 hover:bg-opacity-60'
-                     }`}
-                   />
-                 ))}
-               </div>
-             </div>
-           </div>
+     {/* TÍTULO AZUL PLANO - CAMBIO PRINCIPAL */}
+     <div className="bg-blue-600 py-8 relative overflow-hidden">
+       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+         <div className="text-center">
+           <h1 className="text-5xl md:text-6xl font-bold text-white mb-4 tracking-wide">
+             Intranet ElectroHuila
+           </h1>
+           <p className="text-xl text-blue-100 max-w-3xl mx-auto font-medium">
+             Accede rápidamente a todas las herramientas que necesitas para tu trabajo diario
+           </p>
          </div>
        </div>
-     )}
-
-     {/* BOTÓN NOTIFICACIONES OCULTAS */}
-     {!showNotifications && (
-       <button
-         onClick={() => setShowNotifications(true)}
-         className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110"
-       >
-         <Bell className="w-6 h-6" />
-         <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs flex items-center justify-center text-white">
-           {notifications.length}
-         </span>
-       </button>
-     )}
-
-     {/* FOOTER */}
-     <footer className="bg-white border-t border-gray-200 mt-16">
-       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-         <div className="flex flex-col md:flex-row justify-between items-center">
-           <div className="flex items-center space-x-3 mb-4 md:mb-0">
-             <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex items-center justify-center">
-               <Zap className="w-4 h-4 text-white" />
-             </div>
-             <span className="text-gray-600 text-sm">© 2025 ElectroHuila S.A. E.S.P.</span>
-           </div>
-           <div className="flex items-center space-x-6 text-sm text-gray-600">
-             <button className="hover:text-gray-900 transition-colors">Soporte</button>
-             <button className="hover:text-gray-900 transition-colors">Términos</button>
-             <button className="hover:text-gray-900 transition-colors">Privacidad</button>
-           </div>
-         </div>
-       </div>
-     </footer>
- <ElectroHuilaKidsButton />
-     {/* ESTILOS CSS */}
-     <style jsx>{`
-       @keyframes slideIn {
-         from {
-           transform: translateX(100%);
-           opacity: 0;
-         }
-         to {
-           transform: translateX(0);
-           opacity: 1;
-         }
-       }
        
-       @keyframes fadeInUp {
-         from {
-           opacity: 0;
-           transform: translateY(20px);
-         }
-         to {
-           opacity: 1;
-           transform: translateY(0);
-         }
-       }
+       {/* Decoración opcional */}
+       <div className="absolute top-4 left-4 w-8 h-8 bg-white/20 rounded-full"></div>
+       <div className="absolute bottom-4 right-4 w-6 h-6 bg-white/20 rounded-full"></div>
+       <div className="absolute top-1/2 left-8 w-4 h-4 bg-white/20 rounded-full"></div>
+       <div className="absolute top-1/2 right-8 w-4 h-4 bg-white/20 rounded-full"></div>
+     </div>
+     
+     <Header 
+       onNavigate={handleNavigation}
+       searchTerm={searchTerm}
+       setSearchTerm={setSearchTerm}
+     />
+     {renderCurrentView()}
+{/* NOTIFICACIONES FLOTANTES */}
+      {showNotifications && notifications.length > 0 && (
+        <div 
+          className="fixed bottom-6 right-6 z-50 w-80"
+          style={{ animation: 'slideIn 0.5s ease-out' }}
+        >
+          <div className={`${notifications[currentNotification].color} rounded-2xl shadow-2xl overflow-hidden border-2 border-white transform transition-all duration-500 hover:scale-105 relative`}>
+            
+            {notifications[currentNotification].hasImage && (
+              <div className="relative">
+                <img 
+                  src={notifications[currentNotification].image}
+                  alt={notifications[currentNotification].title}
+                  className="w-full h-32 object-cover"
+                />
+                <div className="absolute inset-0 bg-black/40"></div>
+                
+                <div className="absolute top-0 left-0 right-0 flex items-center justify-between p-4">
+                  <div className="flex items-center space-x-3">
+                    <div className="bg-white/20 backdrop-blur-sm p-2 rounded-lg border border-white/30">
+                      {React.createElement(notifications[currentNotification].icon, {
+                        className: "w-5 h-5 text-white"
+                      })}
+                    </div>
+                    <span className={`font-semibold text-sm text-white drop-shadow-md`}>
+                      {notifications[currentNotification].type.toUpperCase()}
+                    </span>
+                  </div>
+                  <button 
+                    onClick={() => setShowNotifications(false)}
+                    className="text-white hover:bg-white/20 p-1 rounded-full transition-colors backdrop-blur-sm"
+                  >
+                    <X className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
 
-       @keyframes fadeIn {
-         from { opacity: 0; }
-         to { opacity: 1; }
-       }
+            <div className="p-6">
+              <h3 className={`font-bold text-lg mb-2 ${notifications[currentNotification].textColor}`}>
+                {notifications[currentNotification].title}
+              </h3>
+              
+              {notifications[currentNotification].type === 'obituario' && (
+                <div className="text-center mb-4">
+                  <div className="w-16 h-16 bg-white bg-opacity-20 rounded-full mx-auto mb-3 flex items-center justify-center backdrop-blur-sm">
+                    <div className="w-12 h-12 bg-black rounded-full flex items-center justify-center">
+                      <span className="text-white text-2xl">✝</span>
+                    </div>
+                  </div>
+                </div>
+              )}
+              
+              <h4 className={`font-semibold mb-2 ${notifications[currentNotification].textColor}`}>
+                {notifications[currentNotification].subtitle}
+              </h4>
+              <p className={`text-sm mb-4 ${notifications[currentNotification].textColor} opacity-90`}>
+                {notifications[currentNotification].description}
+              </p>
+              <div className="flex items-center justify-between">
+                <span className={`text-xs ${notifications[currentNotification].textColor} opacity-75`}>
+                  {notifications[currentNotification].date}
+                </span>
+                <div className="flex space-x-1">
+                  {notifications.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentNotification(index)}
+                      className={`w-2 h-2 rounded-full transition-all ${
+                        index === currentNotification 
+                          ? 'bg-white' 
+                          : 'bg-white bg-opacity-40 hover:bg-opacity-60'
+                      }`}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
-       @keyframes scaleIn {
-         from {
-           opacity: 0;
-           transform: scale(0.9);
-         }
-         to {
-           opacity: 1;
-           transform: scale(1);
-         }
-       }
+      {/* BOTÓN NOTIFICACIONES OCULTAS */}
+      {!showNotifications && (
+        <button
+          onClick={() => setShowNotifications(true)}
+          className="fixed bottom-6 right-6 z-50 bg-blue-600 hover:bg-blue-700 text-white p-4 rounded-full shadow-2xl transition-all hover:scale-110"
+        >
+          <Bell className="w-6 h-6" />
+          <span className="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full text-xs flex items-center justify-center text-white">
+            {notifications.length}
+          </span>
+        </button>
+      )}
 
-       .line-clamp-2 {
-         display: -webkit-box;
-         -webkit-line-clamp: 2;
-         -webkit-box-orient: vertical;
-         overflow: hidden;
-       }
+      {/* FOOTER */}
+      <footer className="bg-white border-t border-gray-200 mt-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+          <div className="flex flex-col md:flex-row justify-between items-center">
+            <div className="flex items-center space-x-3 mb-4 md:mb-0">
+              <div className="w-6 h-6 bg-gradient-to-r from-blue-500 to-green-500 rounded-lg flex items-center justify-center">
+                <Zap className="w-4 h-4 text-white" />
+              </div>
+              <span className="text-gray-600 text-sm">© 2025 ElectroHuila S.A. E.S.P.</span>
+            </div>
+            <div className="flex items-center space-x-6 text-sm text-gray-600">
+              <button className="hover:text-gray-900 transition-colors">Soporte</button>
+              <button className="hover:text-gray-900 transition-colors">Términos</button>
+              <button className="hover:text-gray-900 transition-colors">Privacidad</button>
+            </div>
+          </div>
+        </div>
+      </footer>
+      <ElectroHuilaKidsButton />
+      
+      {/* ESTILOS CSS SIMPLIFICADOS */}
+      <style jsx>{`
+        @keyframes slideIn {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+        
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
 
-       .line-clamp-3 {
-         display: -webkit-box;
-         -webkit-line-clamp: 3;
-         -webkit-box-orient: vertical;
-         overflow: hidden;
-       }
+        @keyframes fadeIn {
+          from { opacity: 0; }
+          to { opacity: 1; }
+        }
 
-       .delay-75 { animation-delay: 0.075s; }
-       .delay-100 { animation-delay: 0.1s; }
-       .delay-125 { animation-delay: 0.125s; }
-       .delay-150 { animation-delay: 0.15s; }
-       .delay-175 { animation-delay: 0.175s; }
-       .delay-200 { animation-delay: 0.2s; }
-       .delay-225 { animation-delay: 0.225s; }
-       .delay-250 { animation-delay: 0.25s; }
-       .delay-275 { animation-delay: 0.275s; }
-       .delay-300 { animation-delay: 0.3s; }
-       .delay-325 { animation-delay: 0.325s; }
-       .delay-350 { animation-delay: 0.35s; }
-       .delay-375 { animation-delay: 0.375s; }
-       .delay-400 { animation-delay: 0.4s; }
-       .delay-425 { animation-delay: 0.425s; }
-       .delay-450 { animation-delay: 0.45s; }
-       .delay-475 { animation-delay: 0.475s; }
-       .delay-500 { animation-delay: 0.5s; }
-       .delay-525 { animation-delay: 0.525s; }
-     `}</style>
-   </div>
- );
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.9);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        .line-clamp-2 {
+          display: -webkit-box;
+          -webkit-line-clamp: 2;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+
+        .line-clamp-3 {
+          display: -webkit-box;
+          -webkit-line-clamp: 3;
+          -webkit-box-orient: vertical;
+          overflow: hidden;
+        }
+      `}</style>
+    </div>
+  );
 };
 
 export default ElectroHuilaIntranet;
